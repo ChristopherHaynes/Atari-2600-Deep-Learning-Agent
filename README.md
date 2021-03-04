@@ -56,12 +56,41 @@ JamesBond, Kangaroo, Kaboom, Krull, KungFuMaster, MontezumaRevenge, MsPacman, Na
 RoadRunner, Robotank, Seaquest, Solaris, SpaceInvaders, StarGunner, TimePilot, UpNDown, Venture, YarsRevenge, Zaxxon.
 
 ## Default Hyper Parameters
+Name | Value | Description 
+-----|-------|------------
+Alpha | 0.0001 | Learning rate for Adam algorithm
+Gamma | 0.99 | Discount rate of subsequent states value
+Epsilon Minimum | 0.05 | Lowest Value epsilon can reach
+Epsilon Maximum | 1.0 | Highest, and start value of epsilon
+Epsilon Delta | 0.000002 | Amount by which epsilon anneals each step
+Replay Size | 150000 | Number of experiences stored in memory
+Update Frequencey | 4 | Number of steps between network updates
+Batch Size | 32 | Number of experiences sampled for one update
+Target Update Frequency | 10000 | Number of steps between target network updates
 
-## Neural Network Design
+## Deep Q Reinforcement Learning Design
+This agent uses a range of different techniques to improve performance; seperate target and value networks, experience replay buffer and batch
+updating being the main concepts. 
+
+The neural network itself is a scaled down version of a similar structure suggest by deepmind. It is a convolutional neural network (CNN) with
+the following structure;
+![CNN structure](https://github.com/ChristopherHaynes/Atari-2600-Deep-Learning-Agent/blob/master/res/nn_structure.png?raw=true)
+
+To improve performance there is also pre-processing performed on each frame, reducing it from RGB to grey-scale, down-sampling and then 
+stacking 4 consective frame into a 3D tensor;
+![Preprocessing](https://github.com/ChristopherHaynes/Atari-2600-Deep-Learning-Agent/blob/master/res/preprocessing.png?raw=true)
+
+Further detail on the design, rationale and mathematics can be found in the full project report which is included in the __res__ directory.
 
 ## Accuracy and Test Results
+Overall this agent can achieve super-human results in some games (Pong and Breakout) and achieve some level of learning in most others.
+Full tests on all the available games have not yet been carried out, but the results of 5,000,000 steps in 5 different games can be seen
+here;
+![Learning Results Graphs](https://github.com/ChristopherHaynes/Atari-2600-Deep-Learning-Agent/blob/master/res/results_graphs.png?raw=true)
 
 ## Additional Details
-
+There is also additonal options to run a variation of the standard agent to test two different novel methods for varying the epsilon
+value whilst training; Stepped Annealing Epsilon (SAE) and Variable Epsilon (VE). The instructions on how to test these methods and a write up
+of their performance can be found in the full project report which is included in the __res__ directory.
 
 
