@@ -13,12 +13,14 @@ The following software is required:
 ## Windows Installation Procedure
 To prepare a Windows system to run this program, the following steps should be followed;
 With Anaconda installed on the machine, open a CLI and enter the following commands;
-    conda install git
-    conda update --all
-    conda clean -a
-    pip install git+https://github.com/Kojoley/atari-py.git
-    pip install gym[atari]
-    pip install --upgrade tensorflow
+```
+conda install git
+conda update --all
+conda clean -a
+pip install git+https://github.com/Kojoley/atari-py.git
+pip install gym[atari]
+pip install --upgrade tensorflow
+```
 If you have a NVidia GPU and want to optimise the performance of the program, then the GPU version of tensorflow should be installed. This requires
 a few extra downloads and configuration steps which can be found in Tensorflow's documentation;
 https://www.tensorflow.org/install
@@ -43,7 +45,9 @@ Name | Abbreviation | Description | Default Value
 
 An example of using these arguments to launch an experiment on the game "Breakout" for 1000 episodes, with the game being rendered to the screen and
 the model being saved would look like;
-    python agent.py -gn Breakout -ec 1000 -r -s
+```
+python agent.py -gn Breakout -ec 1000 -r -s
+```
     
 ## List of Compatible Atari 2600 Games
 A full list of game names compatiblle with this program are; Alien, Asterix, Asteroids, Atlantis, BattleZone, BeamRider, Berzerk, Bowling, Boxing,
