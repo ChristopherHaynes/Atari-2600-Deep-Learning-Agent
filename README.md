@@ -6,7 +6,7 @@ set of hyper parameters. The user can determine several program parameters based
 ## Program Requirements
 The following software is required:
 * Python 3.6 or later (Recommended: Anaconda for easy installation)
-* *(Python Package)* Gym
+* *(Python Package)* AIGym
 * *(Python Package)* Tensorflow
 * Microsoft Build Tools for Visual Studio 2015/2017
 
