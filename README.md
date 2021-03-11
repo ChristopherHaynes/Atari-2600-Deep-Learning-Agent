@@ -6,7 +6,7 @@ set of hyper parameters. The user can determine several program parameters based
 ## Program Requirements
 The following software is required:
 * Python 3.6 or later (Recommended: Anaconda for easy installation)
-* *(Python Package)* Gym
+* *(Python Package)* AIGym
 * *(Python Package)* Tensorflow
 * Microsoft Build Tools for Visual Studio 2015/2017
 
@@ -56,12 +56,69 @@ JamesBond, Kangaroo, Kaboom, Krull, KungFuMaster, MontezumaRevenge, MsPacman, Na
 RoadRunner, Robotank, Seaquest, Solaris, SpaceInvaders, StarGunner, TimePilot, UpNDown, Venture, YarsRevenge, Zaxxon.
 
 ## Default Hyper Parameters
+Name | Value | Description 
+-----|-------|------------
+Alpha | 0.0001 | Learning rate for Adam algorithm
+Gamma | 0.99 | Discount rate of subsequent states value
+Epsilon Minimum | 0.05 | Lowest Value epsilon can reach
+Epsilon Maximum | 1.0 | Highest, and start value of epsilon
+Epsilon Delta | 0.000002 | Amount by which epsilon anneals each step
+Replay Size | 150000 | Number of experiences stored in memory
+Update Frequencey | 4 | Number of steps between network updates
+Batch Size | 32 | Number of experiences sampled for one update
+Target Update Frequency | 10000 | Number of steps between target network updates
 
-## Neural Network Design
+## Deep Q Reinforcement Learning Design
+This agent uses a range of different techniques to improve performance; seperate target and value networks, experience replay buffer and batch
+updating being the main concepts. 
+
+The neural network itself is a scaled down version of a similar structure suggest by deepmind. It is a convolutional neural network (CNN) with
+the following structure;
+
+![CNN structure](https://github.com/ChristopherHaynes/Atari-2600-Deep-Learning-Agent/blob/master/res/nn_structure.png?raw=true)
+
+To improve performance there is also pre-processing performed on each frame, reducing it from RGB to grey-scale, down-sampling and then 
+stacking 4 consective frame into a 3D tensor;
+
+![Preprocessing](https://github.com/ChristopherHaynes/Atari-2600-Deep-Learning-Agent/blob/master/res/preprocessing.png?raw=true)
+
+Further detail on the design, rationale and mathematics can be found in the full project report which is included in the __res__ directory.
 
 ## Accuracy and Test Results
+Overall this agent can achieve super-human results in some games (Pong and Breakout) and achieve some level of learning in most others.
+Full tests on all the available games have not yet been carried out, but the results of 5,000,000 steps in 5 different games can be seen
+here;
+
+![Learning Results Graphs](https://github.com/ChristopherHaynes/Atari-2600-Deep-Learning-Agent/blob/master/res/results_graphs.png?raw=true)
 
 ## Additional Details
+There is also additonal options to run a variation of the standard agent to test two different novel methods for varying the epsilon
+value whilst training; Stepped Annealing Epsilon (SAE) and Variable Epsilon (VE). The instructions on how to test these methods and a write up
+of their performance can be found in the full project report which is included in the __res__ directory.
 
+## Acknowledgments
+I would like to acknowledge some of the developers of the “Arcade Learning Environment”, Nicolai Czempin and Marc Bellemare, who happily provided
+me with details on the inner workings of the emulator and assisted me with debugging and defining the scope of my project. Finally, I would like
+to thank Nikita Kniazev, who created a Windows branch of the python “Arcade Learning Environment (Atari-Py)” which would work with “AI Gym”.
 
+## License
+Copyright (c) 2015-2021 Chris Haynes and others
 
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
